@@ -241,6 +241,21 @@
   font-weight: 600;
 }
 
+/* small icon inside skill chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.chip-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  object-fit: contain;
+  opacity: 0.95;
+}
+
 .projects .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

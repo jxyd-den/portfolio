@@ -1,4 +1,54 @@
 import React from 'react'
+import reactLogo from '../assets/react.svg'
+
+const skills = [
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'React',
+  'Vite',
+  'Git',
+  'GitHub',
+  'Node.js',
+  'Python',
+  'AWS',
+  'MongoDB',
+  'mySQL',
+  'AWS Services',
+  'KNIME',
+  'PowerBI',
+  'Dart',
+  'Flutter',
+  'Cisco Packet Tracer',
+]
+
+// map friendly skill names to Simple Icons slugs where available
+const iconSlugs = {
+  HTML: 'html5',
+  CSS: 'css3',
+  JavaScript: 'javascript',
+  React: 'react',
+  Vite: 'vite',
+  Git: 'git',
+  GitHub: 'github',
+  'Node.js': 'nodedotjs',
+  Python: 'python',
+  AWS: 'amazonaws',
+  MongoDB: 'mongodb',
+  mySQL: 'mysql',
+  KNIME: 'knime',
+  PowerBI: 'microsoftpowerbi',
+  Dart: 'dart',
+  Flutter: 'flutter',
+}
+
+function getIconUrl(skill) {
+  if (skill === 'React') return reactLogo
+  const slug = iconSlugs[skill]
+  if (!slug) return null
+  // use Simple Icons CDN; color omitted to use default
+  return `https://cdn.simpleicons.org/${slug}`
+}
 
 export default function About() {
   return (
@@ -7,32 +57,31 @@ export default function About() {
         <h1>About me</h1>
         <p>
           I'm a Year 2 Diploma of Information Technology student at
-          Temasek Polytechnic. Being in year 2, I specialize in DevOps, Full stack web 
-          development, Internet of Things (IoT) and Cloud Computing. I
-          enjoy building small web experiences, learning new coding languages, and exploring
-          different areas of technology.
+          Temasek Polytechnic. Being in year 2, I specialize in DevOps, Full
+          stack web development, Internet of Things (IoT) and Cloud Computing.
+          I enjoy building small web experiences, learning new coding
+          languages, and exploring different areas of technology.
         </p>
         <div className="skills">
           <h2>Technical skills and technologies</h2>
           <div className="chips">
-            <span className="chip">HTML</span>
-            <span className="chip">CSS</span>
-            <span className="chip">JavaScript</span>
-            <span className="chip">React</span>
-            <span className="chip">Vite</span>
-            <span className="chip">Git</span>
-            <span className="chip">GitHub</span>
-            <span className="chip">Node.js</span>
-            <span className="chip">Python</span>
-            <span className="chip">AWS</span>
-            <span className="chip">MongoDB</span>
-            <span className="chip">mySQL</span>
-            <span className="chip">AWS Services</span>
-            <span className="chip">KNIME</span>
-            <span className="chip">PowerBI</span>
-            <span className="chip">Dart</span>
-            <span className="chip">Flutter</span>
-            <span className="chip">Cisco Packet Tracer</span>
+            {skills.map((s) => {
+              const icon = getIconUrl(s)
+              return (
+                <span className="chip" key={s}>
+                  {icon ? (
+                    <img
+                      src={icon}
+                      alt=""
+                      aria-hidden="true"
+                      className="chip-icon"
+                      onError={(e) => (e.currentTarget.style.display = 'none')}
+                    />
+                  ) : null}
+                  {s}
+                </span>
+              )
+            })}
           </div>
         </div>
       </div>
