@@ -1,5 +1,10 @@
 import React from 'react'
 import reactLogo from '../assets/react.svg'
+import css3Icon from '../assets/css3.svg'
+import awsIcon from '../assets/amazonaws.svg'
+import powerbiIcon from '../assets/microsoftpowerbi.svg'
+import knimeIcon from '../assets/knime.svg'
+import githubWhite from '../assets/github-white.svg'
 
 const skills = [
   'HTML',
@@ -46,11 +51,20 @@ const iconSlugs = {
 
 function getIconUrl(skill) {
   if (skill === 'React') return reactLogo
+  // prefer local icons for items we saved locally
+  const localMap = {
+    CSS: css3Icon,
+    AWS: awsIcon,
+    'AWS Services': awsIcon,
+    PowerBI: powerbiIcon,
+    KNIME: knimeIcon,
+    GitHub: githubWhite,
+  }
+
+  if (localMap[skill]) return localMap[skill]
+
   const slug = iconSlugs[skill]
   if (!slug) return null
-
-  // For GitHub specifically, request a white-colored icon from the CDN
-  if (slug === 'github') return `https://cdn.simpleicons.org/${slug}/ffffff`
 
   // Some slugs have had intermittent 404s on the simpleicons.org CDN
   // (css3, amazonaws, microsoftpowerbi, knime). Use unpkg as a fallback
