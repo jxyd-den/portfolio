@@ -12,11 +12,10 @@ export default function Contact() {
         <p>
           Business Email: <strong>jngaihz@gmail.com</strong>
         </p>
-
         <div className="socials">
           <a
             className="social-link"
-            href="https://www.linkedin.com/in/jaydenngai"
+            href="https://www.linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -25,7 +24,7 @@ export default function Contact() {
           </a>
 
           <a
-            className="social-link"
+            className="social-link social-github"
             href="https://github.com/jxyd-den"
             target="_blank"
             rel="noopener noreferrer"

@@ -23,10 +23,10 @@ const skills = [
 ]
 
 // map friendly skill names to Simple Icons slugs where available
-// NOTE: to avoid runtime 404s we only request icons for a curated set
-// (some niche slugs like certain enterprise products sometimes 404 on the CDN).
+// keep a broad mapping but route some known problematic slugs to a different CDN
 const iconSlugs = {
   HTML: 'html5',
+  CSS: 'css3',
   JavaScript: 'javascript',
   React: 'react',
   Vite: 'vite',
@@ -34,8 +34,12 @@ const iconSlugs = {
   GitHub: 'github',
   'Node.js': 'nodedotjs',
   Python: 'python',
+  AWS: 'amazonaws',
   MongoDB: 'mongodb',
   mySQL: 'mysql',
+  'AWS Services': 'amazonaws',
+  KNIME: 'knime',
+  PowerBI: 'microsoftpowerbi',
   Dart: 'dart',
   Flutter: 'flutter',
 }
@@ -44,7 +48,18 @@ function getIconUrl(skill) {
   if (skill === 'React') return reactLogo
   const slug = iconSlugs[skill]
   if (!slug) return null
-  // use Simple Icons CDN; color omitted to use default
+
+  // For GitHub specifically, request a white-colored icon from the CDN
+  if (slug === 'github') return `https://cdn.simpleicons.org/${slug}/ffffff`
+
+  // Some slugs have had intermittent 404s on the simpleicons.org CDN
+  // (css3, amazonaws, microsoftpowerbi, knime). Use unpkg as a fallback
+  const useUnpkg = ['css3', 'amazonaws', 'microsoftpowerbi', 'knime']
+  if (useUnpkg.includes(slug)) {
+    return `https://unpkg.com/simple-icons@latest/icons/${slug}.svg`
+  }
+
+  // default to the simpleicons.org CDN for most icons
   return `https://cdn.simpleicons.org/${slug}`
 }
 

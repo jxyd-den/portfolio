@@ -360,17 +360,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.02);
-  transition: transform 160ms ease, box-shadow 160ms ease;
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 56px;
   /* increased size */
   height: 56px;
@@ -386,10 +375,16 @@
 }
 
 .social-icon {
-  width: 100%;
-  height: auto;
+  width: 28px;
+  /* larger icon */
+  height: 28px;
   object-fit: contain;
   display: block;
+}
+
+/* make GitHub PNG icon visible on dark background by inverting its colors */
+.social-link.social-github .social-icon {
+  filter: invert(1) contrast(1.05);
 }
 
 @media (max-width: 420px) {
@@ -399,8 +394,8 @@
   }
 
   .social-icon {
-    width: 100%;
-    height: auto;
+    width: 24px;
+    height: 24px;
   }
 }
 
