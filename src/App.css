@@ -410,6 +410,7 @@
   height: 28px;
   object-fit: contain;
   display: block;
+  transform: scale(2);
 }
 
 /* make GitHub PNG icon visible on dark background by inverting its colors */
