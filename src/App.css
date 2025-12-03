@@ -1,0 +1,427 @@
+/* App-wide layout */
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--text);
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.cca-container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+/* Background gradient and blobs */
+.bg-grad {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 10% 10%, rgba(80, 90, 160, 0.06), transparent 8%), radial-gradient(ellipse at 90% 20%, rgba(64, 160, 200, 0.04), transparent 12%), #020317;
+}
+
+/* starfield SVG styles */
+.starfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.starfield .star {
+  fill: #ffffff;
+  opacity: 0.9;
+}
+
+.starfield .star.s1 {
+  animation: twinkle 3.5s ease-in-out infinite;
+}
+
+.starfield .star.s2 {
+  animation: twinkle 5s ease-in-out infinite;
+}
+
+.starfield .star.s3 {
+  animation: twinkle 7s ease-in-out infinite;
+}
+
+/* larger stars get a slower, softer twinkle and a faint glow */
+.starfield .star-lg {
+  animation: twinkle 9s ease-in-out infinite;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(120, 160, 255, 0.06));
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  100% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+}
+
+/* constellation subtle animation */
+.starfield .constellations line {
+  stroke-dasharray: 6 6;
+  animation: dash 8s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: #061826;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Profile banner above hero */
+.profile-banner {
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.profile-banner-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* small adjustments for hero title spacing when banner present */
+.hero h1 {
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 520px) {
+  .profile-banner {
+    height: clamp(120px, 36vmin, 180px);
+    border-radius: 10px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+}
+
+.site-header .container {
+  /* make the header container span full width so nav can sit near viewport edge */
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.header-inner {
+  align-items: center;
+  justify-content: flex-start;
+  /* use valid value */
+  /* reduced vertical padding */
+  padding: 1rem 0;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.nav a {
+  margin-left: 0.6rem;
+  /* slightly reduced gap between links */
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  z-index: 2;
+  min-height: calc(100vh - 74px);
+  display: flex;
+  align-items: center;
+  padding: 6rem 0;
+}
+
+.hero-inner {
+  max-width: 720px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  margin: 0 0 0.6rem 0;
+}
+
+.hero .accent {
+  color: #ffd56b;
+  margin-left: 0.5rem;
+}
+
+.lead {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+}
+
+.hero-cta {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(10, 10, 20, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Sections */
+.section {
+  padding: 5rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.about p {
+  max-width: 70ch;
+}
+
+.skills .chips {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.chip {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.projects .project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1.25rem;
+  border-radius: 12px;
+  min-height: 140px;
+}
+
+/* Ensure chips inside project cards wrap instead of overflowing */
+.project-card .chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.9rem;
+}
+
+/* CCA section layout: text left, image right */
+.cca-container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.cca-grid {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.cca-text {
+  flex: 1 1 60%;
+}
+
+.cca-media {
+  flex: 0 0 320px;
+  max-width: 40%;
+}
+
+.cca-img {
+  width: 100%;
+  height: auto;
+  /* keep intrinsic aspect ratio so top/bottom are not cropped */
+  max-height: 380px;
+  /* limit extremely tall images */
+  object-fit: contain;
+  /* show whole image without cropping */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(4, 8, 20, 0.6);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+}
+
+@media (max-width: 720px) {
+  .cca-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cca-media {
+    max-width: 100%;
+  }
+
+  .cca-img {
+    height: auto;
+    max-height: clamp(140px, 28vmin, 260px);
+  }
+}
+
+.placeholder {
+  height: 80px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.socials {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.link {
+  color: #ffd56b;
+  text-decoration: none;
+  font-weight: 700
+}
+
+/* Social icon buttons */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  /* increased size */
+  height: 56px;
+  /* increased size */
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.social-link:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 28px rgba(3, 8, 20, 0.48);
+}
+
+.social-icon {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 420px) {
+  .social-link {
+    width: 48px;
+    height: 48px;
+  }
+
+  .social-icon {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.995);
+  transition-property: opacity, transform;
+  /* slowed transition for a gentler reveal */
+  transition-duration: 1.3s;
+  transition-timing-function: cubic-bezier(.16, .9, .2, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* new img class */
+.profile-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* responsive tweaks */
+@media (max-width: 720px) {
+  .nav {
+    display: none
+  }
+
+  .hero {
+    padding-top: 4rem;
+    padding-bottom: 4rem
+  }
+}
