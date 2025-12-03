@@ -23,9 +23,10 @@ const skills = [
 ]
 
 // map friendly skill names to Simple Icons slugs where available
+// NOTE: to avoid runtime 404s we only request icons for a curated set
+// (some niche slugs like certain enterprise products sometimes 404 on the CDN).
 const iconSlugs = {
   HTML: 'html5',
-  CSS: 'css3',
   JavaScript: 'javascript',
   React: 'react',
   Vite: 'vite',
@@ -33,11 +34,8 @@ const iconSlugs = {
   GitHub: 'github',
   'Node.js': 'nodedotjs',
   Python: 'python',
-  AWS: 'amazonaws',
   MongoDB: 'mongodb',
   mySQL: 'mysql',
-  KNIME: 'knime',
-  PowerBI: 'microsoftpowerbi',
   Dart: 'dart',
   Flutter: 'flutter',
 }
