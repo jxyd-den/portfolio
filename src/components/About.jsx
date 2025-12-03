@@ -1,10 +1,11 @@
 import React from 'react'
 import reactLogo from '../assets/react.svg'
-import css3Icon from '../assets/css3.svg'
-import awsIcon from '../assets/amazonaws.svg'
-import powerbiIcon from '../assets/microsoftpowerbi.svg'
+import cssIcon from '../assets/CSS.svg'
+import awsIcon from '../assets/AWS.svg'
+import powerbiIcon from '../assets/powerBI.svg'
 import knimeIcon from '../assets/knime.svg'
 import githubWhite from '../assets/github-white.svg'
+import ciscoIcon from '../assets/Cisco.svg'
 
 const skills = [
   'HTML',
@@ -16,7 +17,6 @@ const skills = [
   'GitHub',
   'Node.js',
   'Python',
-  'AWS',
   'MongoDB',
   'mySQL',
   'AWS Services',
@@ -39,7 +39,6 @@ const iconSlugs = {
   GitHub: 'github',
   'Node.js': 'nodedotjs',
   Python: 'python',
-  AWS: 'amazonaws',
   MongoDB: 'mongodb',
   mySQL: 'mysql',
   'AWS Services': 'amazonaws',
@@ -49,18 +48,19 @@ const iconSlugs = {
   Flutter: 'flutter',
 }
 
+// prefer local icons for items we saved locally
+const localMap = {
+  CSS: cssIcon,
+  AWS: awsIcon,
+  'AWS Services': awsIcon,
+  PowerBI: powerbiIcon,
+  KNIME: knimeIcon,
+  GitHub: githubWhite,
+  'Cisco Packet Tracer': ciscoIcon,
+}
+
 function getIconUrl(skill) {
   if (skill === 'React') return reactLogo
-  // prefer local icons for items we saved locally
-  const localMap = {
-    CSS: css3Icon,
-    AWS: awsIcon,
-    'AWS Services': awsIcon,
-    PowerBI: powerbiIcon,
-    KNIME: knimeIcon,
-    GitHub: githubWhite,
-  }
-
   if (localMap[skill]) return localMap[skill]
 
   const slug = iconSlugs[skill]
@@ -94,6 +94,7 @@ export default function About() {
           <div className="chips">
             {skills.map((s) => {
               const icon = getIconUrl(s)
+              const isLocal = Boolean(localMap[s])
               return (
                 <span className="chip" key={s}>
                   {icon ? (
@@ -101,7 +102,8 @@ export default function About() {
                       src={icon}
                       alt=""
                       aria-hidden="true"
-                      className="chip-icon"
+                      data-skill={s}
+                      className={`chip-icon ${isLocal ? 'chip-icon--local' : ''}`}
                       onError={(e) => (e.currentTarget.style.display = 'none')}
                     />
                   ) : null}

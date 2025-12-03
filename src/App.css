@@ -249,11 +249,41 @@
 }
 
 .chip-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  /* unified icon size for chips */
+  height: 20px;
   display: inline-block;
   object-fit: contain;
   opacity: 0.95;
+  flex-shrink: 0;
+}
+
+/* Ensure any inline SVGs inside chips respect the same size */
+.chip-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Slightly larger size for local SVG icons so they stand out a bit more */
+.chip-icon--local {
+  width: 26px;
+  height: 26px;
+}
+
+.chip-icon--local svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Target specific local icons that render visually smaller and scale them up */
+.chip-icon[data-skill="CSS"],
+.chip-icon[data-skill="AWS"],
+.chip-icon[data-skill="KNIME"],
+.chip-icon[data-skill="PowerBI"],
+.chip-icon[data-skill="Cisco Packet Tracer"] {
+  width: 28px;
+  height: 28px;
+  transform: scale(2);
 }
 
 .projects .project-grid {
